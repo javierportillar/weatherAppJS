@@ -60,7 +60,21 @@ body {
     transition: 0.3s ease-in-out;
 }
 
-.temp h1 {
+.temp-container h1 {
     font-size: 3em;
     margin: 0;
 }
+
+.icon{
+    width: 20%;
+}
+
+.flex-cloud{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 0;
+    margin: 0;
+    height: 3em;
+}
+
