@@ -3,18 +3,18 @@
 ## **Steps**
 
 ### **1. HTML Code**
-To start with the HTML code, it was necessary to link a new font from Google Fonts.
+To begin with the HTML code, it was necessary to link a new font from Google Fonts.
 
 Inside the `<body>` element, a main `<div>` with the class name "card" was added. This element contains two `<div>` sections.
 
-#### **Div class "search"**
+#### **"search" div class**
 The "search" `<div>` class contains the input and button elements. The input allows you to enter the name of the location for which you want to retrieve weather information.
 
 The button element is responsible for making the request to the API and is styled with SVG code.
 
-#### **Div class "weather"**
+#### **"weather" div class**
 The "weather" `<div>` class is designed to display the data obtained from the API. It includes the following:
-- The city being searched, displayed with an `<h1>` element and the class name "city."
+- The city being searched, displayed with an `<h1>` element with the class name "city."
 - Temperature information for that specific city.
 - A `<div>` element with the class name "flex-cloud" containing an `<img>` element to display an image representing the current weather conditions.
 - A `<div>` class named "description," which displays the weather description (e.g., cloudy, light rain, warm, etc.).
@@ -24,33 +24,47 @@ The "weather" `<div>` class is designed to display the data obtained from the AP
 To conclude, the script element includes a `src` attribute pointing to "index.js" for the logic implementation.
 
 ### **2. JS Code**
-JavaScript code was designed by this way.
+The JavaScript code was designed as follows:
 
-#### **weather variable**
+#### **"weather" variable**
 
-To begin, it was created a variable called weather, this variable is an object with 3 elements.
+To begin, a variable called "weather" was created. This variable is an object with three properties:
 
-- apiKey: this is my personal api key that was obtained from [OpenWeatherMap](https://openweathermap.org/) (go to direct link for more information)
-- fetchWeather: this is a propierty form weather object that makes the petition to the API, this was made as an fetch fcn request, the data is converted into json and then it's guided to displayWeather propierty.
-- displayWeather: this propierty receibes from fetchWeather "data" converted into json, it makes a destructuring for that variable and then it calls a new fcn called updateScreen to upload the data info into the screen.
+- `apiKey`: This property stores my personal API key obtained from [OpenWeatherMap](https://openweathermap.org/) (you can visit the direct link for more information).
+- `fetchWeather`: This property of the "weather" object makes a request to the API using the `fetch` function. The data is then converted into JSON, and it's directed to the "displayWeather" property.
+- `displayWeather`: This property receives the "data" converted into JSON from the "fetchWeather" property. It performs destructuring on that variable and then calls a new function called "updateScreen" to display the data on the screen.
 
-#### **set city state**
+#### **Setting the city state**
 
-For having an set state, the code begins setting a city called Pasto. For that reason when the project is open, automatically it shows Pasto city weather.
+To set an initial state, the code starts by setting the city to "Pasto." This means that when the project is opened, it automatically displays the weather for the city of Pasto.
 
-#### **action variables**
+#### **Action variables**
 
-It was declarated and setted search and city variables, search is guided to search btn,
-city is created for receibing the name of the city 
+Two variables, "search" and "city," were declared and initialized. "Search" is connected to the search button, while "city" is created to receive the name of the city.
 
-After that it was created 2 events listeners.
--search event is setted with click action that pulls setQuery fcn.
--document event is setted with keydown event, making that every keydown press generate a new event, in the case that key event is "Enter" key it will pulls setQuery fcn.
+Afterward, two event listeners were created:
+- The "search" event is set with a click action, triggering the "setQuery" function.
+- The "document" event is set with a keydown event, which means that every key press generates a new event. In the case that the key event is the "Enter" key, it calls the "setQuery" function.
 
-#### **action functions**
+#### **Action functions**
 
-setQuery fcn calls getResults and gives to it city.value because the element city is an input element.
+The "setQuery" function calls "getResults" and provides it with `city.value` because the "city" element is an input element.
 
-getResults fcn create a new variable called result that makes the petition to wather variable goint to fetchWeather and giving to it the same information that receibes (city.value).
+The "getResults" function creates a new variable called "result," which makes a request to the "weather" variable, going to "fetchWeather" and providing it with the same information received (`city.value`).
 
-updateScreen fcn receibes name, icon, description, temp, humidity, speed and country as propierties, it creates te variables according to html className code and inside every variable it create the information updated with the specific city place.
+The "updateScreen" function receives "name," "icon," "description," "temp," "humidity," "speed," and "country" as properties. It creates variables according to the HTML class names and updates the information for the specific city location within each variable.
+
+### **3. CSS Code**
+The CSS code begins with styling the `<body>`, making the `<div>` display as a flex container and centering the `<div>` elements on the screen. It sets background color, font-family, font size, and a background image.
+
+Styles for the "card" `<div>` class include background color, text color, organization with padding, border radius, and a maximum width to avoid overloading certain elements.
+
+The "search" `<div>` class uses `display: flex` to organize the city input and button, centering both `<div>` elements.
+
+The styling for the city input includes background color, borders, text color, and width.
+
+Similar styling is applied to the search button, which sets background color, text color, border radius, and div size. Additionally, a larger size is applied to the SVG, and the button changes on hover with a cursor pointer, new text color, and background color.
+
+The "flex-cloud" class uses `display: flex` to center the `<div>` elements without borders.
+
+The `.loading` class hides information while the API request is loading.
