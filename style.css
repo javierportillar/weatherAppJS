@@ -95,3 +95,13 @@ body {
     color: white;
     position: absolute;
 }
+.country{
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    margin-top: 0;
+
+}
+.city{
+    padding-bottom: 0;
+    margin-bottom: 0.5em;
+}
