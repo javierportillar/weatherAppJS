@@ -6,18 +6,18 @@ let weather = {
     )
       .then((response) => response.json())
       .then((data) => this.displayWeather(data))
-      .catch((err) => console.log(err));
+      .catch((err) => alert(`Error. Not place found.`));
   },
   displayWeather: function (data) {
-    console.log(data);
     const { name } = data;
     const { icon, description } = data.weather[0];
     const { temp, humidity } = data.main;
     const { speed } = data.wind;
-    updateScreen(name, icon, description, temp, humidity, speed);
-    console.log(name, icon, description, temp, humidity, speed);
+    const { country } = data.sys;
+    updateScreen(name, icon, description, temp, humidity, speed, country);
   },
 };
+
 setCity();
 
 function setCity() {
@@ -29,7 +29,7 @@ const city = document.querySelector(".search-bar");
 search.addEventListener("click", setQuery);
 document.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    getResults(city.value);
+    setQuery();
   }
 });
 
@@ -41,7 +41,15 @@ function getResults(query) {
   const result = weather.fetchWeather(query);
 }
 
-const updateScreen = (name, icon, description, temp, humidity, speed) => {
+const updateScreen = (
+  name,
+  icon,
+  description,
+  temp,
+  humidity,
+  speed,
+  country
+) => {
   const cityName = document.querySelector(".city");
   const weatherIcon = document.querySelector(".icon");
   const cityDesc = document.querySelector(".description");
@@ -49,14 +57,14 @@ const updateScreen = (name, icon, description, temp, humidity, speed) => {
   const humidityValue = document.querySelector(".humidity");
   const windSpeed = document.querySelector(".wind");
   const weatherContainer = document.querySelector(".weather");
-  
+  const countryName = document.querySelector(".country");
 
   weatherContainer.classList.remove("loading");
-  
   document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${name}')`;
   cityDesc.innerText = `${description}`;
   weatherIcon.src = `http://openweathermap.org/img/wn/${icon}.png`;
   cityName.innerText = `Weather in ${name}`;
+  countryName.innerText = `Country: ${country}`;
   tempValue.innerText = `${temp} °C`;
   humidityValue.innerText = `Humidity: ${humidity}%`;
   windSpeed.innerText = ` Wind speed: ${speed} km/h`;
